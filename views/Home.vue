@@ -2,28 +2,16 @@
   <div class="home">
     <div class="feature-card">
       <router-link to="/movie/tt0409591">
-        <img
-          src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-          alt="Naruto Poster"
-          class="featured-img"
-        />
+        <img src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" alt="Naruto Poster" class="featured-img" />
         <div class="detail">
           <h3>Naruto</h3>
-          <p>
-            Naruto Uzumaki, a mischievous adolescent ninja, struggles as he
-            searches for recognition and dreams of becoming the Hokage, the
-            village's leader and strongest ninja.
-          </p>
+          <p>Naruto Uzumaki, a mischievous adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, the village's leader and strongest ninja.</p>
         </div>
       </router-link>
     </div>
 
     <form @submit.prevent="SearchMovies()" class="search-box">
-      <input
-        type="text"
-        placeholder="What are you looking for?"
-        v-model="search"
-      />
+      <input type="text" placeholder="What are you looking for?" v-model="search" />
       <input type="submit" value="Search" />
     </form>
 
@@ -45,33 +33,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import env from "@/env.js";
+import { ref } from 'vue';
+import env from '@/env.js'
 
 export default {
-  setup() {
+  setup () {
     const search = ref("");
     const movies = ref([]);
 
     const SearchMovies = () => {
       if (search.value != "") {
         fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&s=${search.value}`)
-          .then((response) => response.json())
-          .then((data) => {
+          .then(response => response.json())
+          .then(data => {
             movies.value = data.Search;
             search.value = "";
-            console.log(data);
           });
       }
-    };
+    }
 
     return {
       search,
       movies,
-      SearchMovies,
-    };
-  },
-};
+      SearchMovies
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -99,12 +86,12 @@ export default {
       z-index: 1;
 
       h3 {
-        color: #fff;
+        color:#FFF;
         margin-bottom: 16px;
       }
 
       p {
-        color: #fff;
+        color: #FFF;
       }
     }
   }
@@ -125,7 +112,7 @@ export default {
 
       &[type="text"] {
         width: 100%;
-        color: #fff;
+        color: #FFF;
         background-color: #496583;
         font-size: 20px;
         padding: 10px 16px;
@@ -145,16 +132,16 @@ export default {
       &[type="submit"] {
         width: 100%;
         max-width: 300px;
-        background-color: #42b883;
+        background-color: #42B883;
         padding: 16px;
         border-radius: 8px;
-        color: #fff;
+        color: #FFF;
         font-size: 20px;
         text-transform: uppercase;
         transition: 0.4s;
 
         &:active {
-          background-color: #3b8070;
+          background-color: #3B8070;
         }
       }
     }
@@ -189,8 +176,8 @@ export default {
           .type {
             position: absolute;
             padding: 8px 16px;
-            background-color: #42b883;
-            color: #fff;
+            background-color: #42B883;
+            color: #FFF;
             bottom: 16px;
             left: 0px;
             text-transform: capitalize;
@@ -204,12 +191,12 @@ export default {
           border-radius: 0px 0px 8px 8px;
 
           .year {
-            color: #aaa;
+            color: #AAA;
             font-size: 14px;
           }
 
           h3 {
-            color: #fff;
+            color: #FFF;
             font-weight: 600;
             font-size: 18px;
           }
